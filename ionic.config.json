@@ -1,0 +1,7 @@
+{
+  "name": "albaranesApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
