@@ -1,0 +1,19 @@
+<app-header titulo="Firma de albarán" [idAlbaran]="idAlbaran['idAlbaran']"></app-header>
+
+<ion-content [forceOverscroll]="false" class="ion-text-center">
+  <div class="ion-padding-vertical">
+      <canvas #imageCanvas 
+          (mousedown)="startDrawing($event)" (touchstart)="startDrawingTouch($event)" 
+          (mousemove)="moved($event)"        (touchmove)="touchMoved($event)" 
+          (mouseup)="endDrawing()"           (touchend)="endDrawing()">
+      </canvas>
+  </div>
+
+  <ion-buttons class="btn-group">
+      <ion-button (click)="exportCanvasImage()" expand="block" fill="solid" color="success">Finalizar</ion-button>
+      <ion-button (click)="clearCanvas()" expand="block" fill="solid" color="secondary">Limpiar</ion-button>
+      <ion-button routerLink="/mostrar-albaran" expand="block" fill="solid" color="danger">Atrás</ion-button>
+  </ion-buttons>
+</ion-content>
+
+<app-footer></app-footer>

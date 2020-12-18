@@ -18,6 +18,10 @@ const routes: Routes = [
     path: 'mostrar-albaran',
     loadChildren: () => import('./pages/mostrar-albaran/mostrar-albaran.module').then( m => m.MostrarAlbaranPageModule)
   },
+  {
+    path: 'firmar-albaran',
+    loadChildren: () => import('./pages/firmar-albaran/firmar-albaran.module').then( m => m.FirmarAlbaranPageModule)
+  },
 
 
 ];

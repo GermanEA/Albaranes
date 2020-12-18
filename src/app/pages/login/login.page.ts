@@ -58,16 +58,16 @@ export class LoginPage implements OnInit {
     this.authService.authUser(this.cif, this.password).subscribe( resp => {
       console.log(resp);
       if (!resp['estado']) {
-        this.toast.warningToast('El usuario o password son incorrectos.', 'danger');
+        this.toast.warningToast('El usuario o password son incorrectos.');
       } else if (resp['datos']['activo'] != 1) {
-        this.toast.warningToast('Acceso denegado, pongase en contacto con el administrador.', 'danger');
+        this.toast.warningToast('Acceso denegado, pongase en contacto con el administrador.');
       } else {
         this.globalData.idConductor = resp['datos']['idConductor'];
         this.globalData.cif = resp['datos']['cif'];
         this.navCtrl.navigateForward('/lista-albaranes');
       }
     }, (error) => {
-      this.toast.warningToast('Error al conectar al servidor', 'danger');
+      this.toast.warningToast('Error al conectar al servidor');
     });
   }
 

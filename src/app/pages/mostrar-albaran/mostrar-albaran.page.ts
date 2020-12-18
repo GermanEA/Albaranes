@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
-//Para capturar el parámetro pasado por ruta
 import { ActivatedRoute } from '@angular/router';
 import { GlobalDataService } from '../../services/global-data.service';
 import { QueriesService } from '../../services/queries.service';
@@ -32,13 +30,13 @@ export class MostrarAlbaranPage implements OnInit {
     this.querieAlbaran.recoverListAlbaran(this.idAlbaran['idAlbaran']).subscribe( resp => {
       console.log(resp);
       if (!resp['estado']) {
-        this.toast.warningToast('No existen albaranes.', 'danger');
+        this.toast.warningToast('No existen albaranes.');
       } else {
         this.globalData.detalleAlbaran = resp['datos'];
         this.detalleAlbaran = this.globalData.detalleAlbaran;
       }
     }, (error) => {
-      this.toast.warningToast('Error al conectar al servidor (Albaranes)', 'danger');
+      this.toast.warningToast('Error al conectar al servidor (Albaranes)');
     });
 
   }

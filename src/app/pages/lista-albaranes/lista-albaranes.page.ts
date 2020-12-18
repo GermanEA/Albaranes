@@ -21,7 +21,7 @@ export class ListaAlbaranesPage implements OnInit {
     this.listAlbaranes.recoverListAlbaranes().subscribe( resp => {
       console.log(resp);
       if (!resp['estado']) {
-        this.toast.warningToast('No existen albaranes.', 'danger');
+        this.toast.warningToast('No existen albaranes.');
       } else {
         this.globalData.datosAlbaran = resp['datos'];
         this.datosAlbaran = this.globalData.datosAlbaran;
@@ -29,7 +29,7 @@ export class ListaAlbaranesPage implements OnInit {
         this.fecha = this.globalData.fecha;
       }
     }, (error) => {
-      this.toast.warningToast('Error al conectar al servidor (Albaranes)', 'danger');
+      this.toast.warningToast('Error al conectar al servidor (Albaranes)');
     });
   }
 }
