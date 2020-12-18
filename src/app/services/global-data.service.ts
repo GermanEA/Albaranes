@@ -7,10 +7,13 @@ export class GlobalDataService {
 
   cif: string = '';
   idConductor: number;
-  fecha: any = '';
+  fechaHoy: Date = new Date;
+  fecha: string = this.fechaHoy.getFullYear() + '-' + (this.fechaHoy.getMonth() + 1) + '-' + this.fechaHoy.getDate();
   datosAlbaran: any[];
   detalleAlbaran: any[];
   
-  constructor() { }
+  constructor() {
+  }
+  
 
 }

@@ -15,10 +15,10 @@ export class QueriesService {
   constructor(private http: HttpClient,
               private globalData: GlobalDataService) { }
 
-  recoverListAlbaranes() {
+  recoverListAlbaranes(fecha) {
     return this.http.post(this.gestor_url + 'get_albaranes', {
       idConductor: this.globalData.idConductor,
-      fecha: '2020-06-17'
+      fecha: fecha
     }).pipe(
       map( resp => resp ),
       catchError( err => {

@@ -24,3 +24,34 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+.general-toast {
+    color: white;
+    --width: 80%;
+    --box-shadow: none;
+
+    &::part(header) {
+        font-size: 0.9em;
+    }
+
+    &::part(button) {
+        background-color: white;
+    }
+
+    &::part(message) {
+        font-size: 1.3em;
+    }
+}
+
+.warning-toast::part(button) {
+    color: var(--ion-color-warning);
+}
+
+.success-toast::part(button) {
+    color: var(--ion-color-success);
+}
+
+.danger-toast::part(button) {
+    color: var(--ion-color-danger);
+}
+

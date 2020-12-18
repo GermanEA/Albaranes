@@ -10,22 +10,35 @@ export class ToastService {
 
   async warningToast(message: string) {
     const toast = await this.toastController.create({
-      position: 'bottom',
+      header: 'Información',
+      position: 'middle',
       color: 'warning',
-      cssClass: 'my-toast',
+      cssClass: 'warning-toast general-toast',
       message: message,
-      duration: 2000
+      duration: 2000,
+      buttons: [
+        {
+          side: 'start',
+          icon: 'warning-outline'
+        }
+      ]
     });
     toast.present();
   }
 
   async successToast(message: string) {
     const toast = await this.toastController.create({
-      position: 'bottom',
+      position: 'middle',
       color: 'success',
-      cssClass: 'my-toast',
+      cssClass: 'success-toast general-toast',
       message: message,
-      duration: 2000
+      duration: 2000,
+      buttons: [
+        {
+          side: 'start',
+          icon: 'checkmark-circle-outline'
+        }
+      ]
     });
     toast.present();
   }
@@ -33,10 +46,16 @@ export class ToastService {
   async dangerToast(message: string) {
     const toast = await this.toastController.create({
       position: 'bottom',
-      color: 'warning',
-      cssClass: 'my-toast',
+      color: 'danger',
+      cssClass: 'danger-toast general-toast',
       message: message,
-      duration: 2000
+      duration: 2000,
+      buttons: [
+        {
+          side: 'start',
+          icon: 'close-circle-outline'
+        }
+      ]
     });
     toast.present();
   }

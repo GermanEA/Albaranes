@@ -1,6 +1,10 @@
-<app-header titulo="Lista de albaranes" fecha="{{ fecha }}"></app-header>
+<app-header titulo="Lista de albaranes"></app-header>
 
-<ion-content class="ion-padding">
+<ion-content class="ion-padding">   
+    <ion-item color="danger">
+        <ion-title>Elige una fecha</ion-title>          
+        <ion-datetime displayFormat="DD-MM-YYYY" value="{{ fecha }}" [(ngModel)]="fecha" (ionChange)="getFecha($event)"></ion-datetime>
+    </ion-item>
     <ion-grid>
         <ion-row class="tb-header">
             <ion-col class="ion-text-center" size="2">Nº Albarán</ion-col>
@@ -23,7 +27,7 @@
                 </ng-template>
                 
             </ion-col>
-        </ion-row>
+        </ion-row>       
     </ion-grid>
 </ion-content>
 

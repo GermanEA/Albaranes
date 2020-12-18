@@ -2,14 +2,20 @@
   <ion-menu side="start" menuId="principal" contentId="main">
   <ion-header>
     <ion-toolbar color="primary">
-      <ion-title>Start Menu</ion-title>
+      <ion-title>Elige una opción</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content>
     <ion-list>
-      <ion-item>Listado</ion-item>
-      <ion-item>Búsqueda</ion-item>
-      <ion-item>Salir</ion-item>
+      <ion-menu-toggle>
+        <ion-item routerLink="/lista-albaranes">Listado</ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item>Búsqueda</ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item>Salir</ion-item>
+      </ion-menu-toggle>
     </ion-list>
   </ion-content>
 </ion-menu>

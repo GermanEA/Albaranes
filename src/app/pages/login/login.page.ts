@@ -10,7 +10,6 @@ import { GlobalDataService } from '../../services/global-data.service';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-
 export class LoginPage implements OnInit {
   
   validations_form: FormGroup;
@@ -35,11 +34,11 @@ export class LoginPage implements OnInit {
     });
   }
 
-  get cif(): any {
+  get cif(): string {
     return this.validations_form.get('cif').value;
   }
 
-  get password(): any {
+  get password(): string {
     return this.validations_form.get('password').value;
   }
 
@@ -58,9 +57,9 @@ export class LoginPage implements OnInit {
     this.authService.authUser(this.cif, this.password).subscribe( resp => {
       console.log(resp);
       if (!resp['estado']) {
-        this.toast.warningToast('El usuario o password son incorrectos.');
+        this.toast.dangerToast('El usuario o password son incorrectos.');
       } else if (resp['datos']['activo'] != 1) {
-        this.toast.warningToast('Acceso denegado, pongase en contacto con el administrador.');
+        this.toast.dangerToast('Acceso denegado, pongase en contacto con el administrador.');
       } else {
         this.globalData.idConductor = resp['datos']['idConductor'];
         this.globalData.cif = resp['datos']['cif'];

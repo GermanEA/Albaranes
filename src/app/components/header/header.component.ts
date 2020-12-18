@@ -11,7 +11,6 @@ export class HeaderComponent implements OnInit {
 
   @Input() titulo: string;
   @Input() idAlbaran: string;
-  @Input() fecha: any;
   cif: string = this.globalData.cif;
   
   constructor(private menu: MenuController,
@@ -20,9 +19,17 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
-  openPrincipal() {
+  openMenu() {
     this.menu.enable(true, 'principal');
     this.menu.open('principal');
+  }
+
+  closeMenu() {
+    this.menu.close();
+  }
+
+  toggleMenu() {
+    this.menu.toggle();
   }
 
 }

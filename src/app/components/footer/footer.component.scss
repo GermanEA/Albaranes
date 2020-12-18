@@ -1,0 +1,17 @@
+ion-item {
+    --border-width: 0;
+}
+
+ion-datetime {
+    --placeholder-color: white;
+    --padding-bottom: 10px;
+    --padding-end: 10px;
+    --padding-start: 10px;
+    --padding-top: 10px;
+    // margin: 10px;
+    background-color: white;
+    color: black;
+    border-radius: 3px;
+    font-size: 15px;
+    // box-shadow: 0px 3px 16px -4px rgba(50, 50, 50, 0.59);
+}
