@@ -14,14 +14,14 @@
         <ion-row>
           <ion-col>
             <ion-item>
-              <ion-label position="floating">Correo: </ion-label>
+              <ion-label position="floating">CIF: </ion-label>
               <ion-icon name="accessibility-outline" size="large" slot="start"></ion-icon>
-              <ion-input type="text" formControlName="email" placeholder="Introduce tu correo" inputmode="text" required></ion-input>
+              <ion-input type="text" formControlName="cif" placeholder="Introduce tu CIF" inputmode="text" required></ion-input>
             </ion-item>
             <div class="validation-errors">
-              <ng-container *ngFor="let validation of validation_messages.email">
+              <ng-container *ngFor="let validation of validation_messages.cif">
                 <div class="error-message"
-                  *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
+                  *ngIf="validations_form.get('cif').hasError(validation.type) && (validations_form.get('cif').dirty || validations_form.get('cif').touched)">
                   {{ validation.message }}
                 </div>
               </ng-container>
@@ -57,7 +57,7 @@
           </ion-col>
         </ion-row>
     
-        <label class="error-message">{{ errorMessage }}</label>
+        
       </form>
   
       

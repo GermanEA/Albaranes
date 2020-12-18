@@ -10,7 +10,15 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },  {
+    path: 'lista-albaranes',
+    loadChildren: () => import('./pages/lista-albaranes/lista-albaranes.module').then( m => m.ListaAlbaranesPageModule)
   },
+  {
+    path: 'mostrar-albaran',
+    loadChildren: () => import('./pages/mostrar-albaran/mostrar-albaran.module').then( m => m.MostrarAlbaranPageModule)
+  },
+
 
 ];
 
