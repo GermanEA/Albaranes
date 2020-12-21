@@ -1,22 +1,35 @@
 import { Injectable } from '@angular/core';
+import { Storage } from '@ionic/storage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocalDataService {
 
-  cif: string = '';
+  cif: string;
   idConductor: number;
-  datos: any[];
+  password: string;
+  checkTime: Date;
 
-  constructor() { }
+  constructor(private localStorage: Storage) { }
 
-  getCif() {
-    return this.cif
+  setStorage(cif, idConductor, password) {
+    let timeSet = new Date();
+    this.checkTime = timeSet;
+
+    this.localStorage.set('cif', cif);
+    this.localStorage.set('idConductor', idConductor);
+    this.localStorage.set('password', password);
+    this.localStorage.set('checkTime', this.checkTime);
   }
 
-  getIdConductor() {
-    return this.idConductor;
+  async getStorage() {
+    this.cif = await this.localStorage.get('cif');
+    this.idConductor = await this.localStorage.get('idConductor');
+    this.password = await this.localStorage.get('password');
+    this.checkTime = await this.localStorage.get('checkTime');
   }
+
+  
   
 }

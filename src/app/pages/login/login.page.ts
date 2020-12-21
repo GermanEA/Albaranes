@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { NavController } from '@ionic/angular';
+import { NavController, Platform } from '@ionic/angular';
 import { AuthenticationService } from '../../services/authentication.service';
 import { ToastService } from '../../services/toast.service';
 import { GlobalDataService } from '../../services/global-data.service';
+import { LocalDataService } from '../../services/local-data.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,9 @@ export class LoginPage implements OnInit {
               private formBuilder: FormBuilder,
               private authService: AuthenticationService,
               private toast: ToastService,
-              private globalData: GlobalDataService) {}
+              private globalData: GlobalDataService,
+              private localData: LocalDataService,
+              private plt: Platform) {}
 
   ngOnInit() {
     this.validations_form = this.formBuilder.group({
@@ -32,6 +35,14 @@ export class LoginPage implements OnInit {
         Validators.required
       ])),
     });
+
+    this.loginUserRemember();
+  }
+
+  ionViewDidEnter() { 
+    this.plt.backButton.subscribe( () => {
+       navigator['app'].exitApp(); 
+    }); 
   }
 
   get cif(): string {
@@ -63,11 +74,36 @@ export class LoginPage implements OnInit {
       } else {
         this.globalData.idConductor = resp['datos']['idConductor'];
         this.globalData.cif = resp['datos']['cif'];
+        this.localData.setStorage(this.cif, this.globalData.idConductor, this.password);
         this.navCtrl.navigateForward('/lista-albaranes');
       }
     }, (error) => {
       this.toast.warningToast('Error al conectar al servidor');
     });
+  }
+
+  async loginUserRemember() {  
+    await this.localData.getStorage();    
+    
+    if( this.localData.cif && this.localData.password ) {
+      
+      let todayDate:Date = new Date();
+      let interval:any = Math.round(todayDate.getTime() - this.localData.checkTime.getTime())/60000;
+
+      console.log(todayDate);
+      console.log(this.localData.checkTime);
+      console.log(interval);
+
+      //Cada 3 días se debe de loguear nuevamente obligatoriamente.
+      if( interval < 4320 ) {
+        this.authService.authUser(this.localData.cif, this.localData.password).subscribe( resp => {
+          console.log(resp);
+          this.globalData.idConductor = resp['datos']['idConductor'];
+          this.globalData.cif = resp['datos']['cif'];
+          this.navCtrl.navigateForward('/lista-albaranes');
+        });
+      }
+    }
   }
 
 }
