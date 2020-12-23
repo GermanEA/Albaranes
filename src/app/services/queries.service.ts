@@ -10,7 +10,7 @@ import { GlobalDataService } from './global-data.service';
 })
 export class QueriesService {
 
-  gestor_url: string = 'http://demat.local.com/index.php/api/';
+  gestor_url: string = 'https://dematpruebas.appcimat.com/index.php/api/';
 
   constructor(private http: HttpClient,
               private globalData: GlobalDataService) { }

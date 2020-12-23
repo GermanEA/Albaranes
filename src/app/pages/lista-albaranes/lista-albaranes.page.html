@@ -1,34 +1,39 @@
-<app-header titulo="Lista de albaranes"></app-header>
+<app-header></app-header>
+<app-header-secondary titulo="Lista de albaranes" fecha="{{ fechaFormat }}"></app-header-secondary>
 
-<ion-content class="ion-padding">   
+<ion-content class="content-list">   
+    
+    <ion-grid>
+        <ion-row class="tb-header">
+            <ion-col class="ion-text-center" size="2">Ref.</ion-col>
+            <ion-col class="ion-text-center" size="3">Destinatario</ion-col>
+            <ion-col class="ion-text-center" size="3">Obra</ion-col>
+            <ion-col class="ion-text-center" size="2">Hora</ion-col>
+            <ion-col class="ion-text-center" size="2">Firmado</ion-col>
+        </ion-row>
+        <ng-container *ngIf="datosAlbaran; else elseBlock" >
+            <ion-row class="tb-item" *ngFor="let albaran of datosAlbaran" [routerLink]="['/mostrar-albaran']" [queryParams]="{idAlbaran: albaran.idAlbaran}">
+                <ion-col class="ion-text-center" size="2">{{ albaran.idAlbaran }}</ion-col>
+                <ion-col class="ion-text-center" size="3">{{ albaran.denominacionSocial }}</ion-col>
+                <ion-col class="ion-text-center" size="3">{{ albaran.obra }}</ion-col>
+                <ion-col class="ion-text-center" size="2">{{ albaran.fecha_tte.substr(-8, 5) + ' h.' }}</ion-col>
+                <ion-col class="ion-text-center" size="2">
+                    <ng-container *ngIf="albaran.entregado; else elseTemplate">
+                        <ion-icon name="ellipse" color="success"></ion-icon>
+                    </ng-container>
+                    <ng-template #elseTemplate>
+                        <ion-icon name="close" color="danger"></ion-icon>
+                    </ng-template>
+                    
+                </ion-col>
+            </ion-row>       
+        </ng-container>
+        <ng-template #elseBlock>NO HAY DATOS</ng-template>
+    </ion-grid>
     <ion-item color="danger">
         <ion-title>Elige una fecha</ion-title>          
         <ion-datetime displayFormat="DD-MM-YYYY" value="{{ fecha }}" [(ngModel)]="fecha" (ionChange)="getFecha($event)"></ion-datetime>
     </ion-item>
-    <ion-grid>
-        <ion-row class="tb-header">
-            <ion-col class="ion-text-center" size="2">Nº Albarán</ion-col>
-            <ion-col class="ion-text-center" size="3">Transportista</ion-col>
-            <ion-col class="ion-text-center" size="3">Obra</ion-col>
-            <ion-col class="ion-text-center" size="2">Fecha</ion-col>
-            <ion-col class="ion-text-center" size="2">Firmado</ion-col>
-        </ion-row>
-        <ion-row class="ion-padding" *ngFor="let albaran of datosAlbaran" [routerLink]="['/mostrar-albaran']" [queryParams]="{idAlbaran: albaran.idAlbaran}">
-            <ion-col class="ion-text-center" size="2">{{ albaran.idAlbaran }}</ion-col>
-            <ion-col class="ion-text-center" size="3">{{ albaran.denominacionSocial }}</ion-col>
-            <ion-col class="ion-text-center" size="3">{{ albaran.obra }}</ion-col>
-            <ion-col class="ion-text-center" size="2">{{ albaran.fecha_tte }}</ion-col>
-            <ion-col class="ion-text-center" size="2">
-                <ng-container *ngIf="albaran.entregado; else elseTemplate">
-                    <ion-icon name="checkmark-done-outline" color="success"></ion-icon>
-                </ng-container>
-                <ng-template #elseTemplate>
-                    <ion-icon name="checkmark-outline" color="danger"></ion-icon>
-                </ng-template>
-                
-            </ion-col>
-        </ion-row>       
-    </ion-grid>
 </ion-content>
 
 <app-footer></app-footer>

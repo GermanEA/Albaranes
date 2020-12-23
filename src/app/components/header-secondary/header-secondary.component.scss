@@ -1,0 +1,30 @@
+ion-row {    
+    --color: black;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 2px solid #e6e6e6;
+    margin: 10px 20px;
+    padding-bottom: 10px;
+    position: relative;
+
+    ion-icon {
+        position: absolute;
+        top: 7px;
+        color: var(--ion-color-danger);
+        font-size: 2rem;
+
+        &:first-child {        
+            left: 0;
+        }
+
+        &:last-child {
+            right: 0;
+        }
+    }
+
+    .lbl {
+        color: var(--ion-color-danger);
+        font-size: 1.6rem;
+    }
+    
+}

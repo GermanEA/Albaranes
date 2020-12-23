@@ -1,12 +1,19 @@
-.lbl-user {
-    font-size: 0.8rem;
-}
+ion-toolbar{
 
-ion-buttons {
-    position: absolute;
-}
-
-ion-toolbar {
-    display: flex;
-    flex-direction: column;
+    ion-buttons {
+        position: absolute;
+        right: 0;
+    }
+    
+    ion-title {
+        font-family: 'Franklin Gothic Heavy', Arial, sans-serif;
+        font-size: 2rem;
+    }
+    
+    .header-md::after {
+        border: 0px !important;
+        border-bottom-color: transparent !important;
+        background-image: none !important;
+        border-bottom: none !important;
+    }
 }

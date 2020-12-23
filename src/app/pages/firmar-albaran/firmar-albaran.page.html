@@ -1,19 +1,50 @@
-<app-header titulo="Firma de albarán" [idAlbaran]="idAlbaran['idAlbaran']"></app-header>
+<app-header></app-header>
+<app-header-secondary titulo="Albarán" [idAlbaran]="idAlbaran['idAlbaran']"></app-header-secondary>
 
-<ion-content [forceOverscroll]="false" class="ion-text-center">
-  <div class="ion-padding-vertical">
-      <canvas #imageCanvas 
-          (mousedown)="startDrawing($event)" (touchstart)="startDrawingTouch($event)" 
-          (mousemove)="moved($event)"        (touchmove)="touchMoved($event)" 
-          (mouseup)="endDrawing()"           (touchend)="endDrawing()">
-      </canvas>
-  </div>
+<ion-content [forceOverscroll]="false" class="content-canvas ion-text-center">
+    <ion-row class="tb-header">
+        <ion-col class="ion-text-center" size="12">Firmar</ion-col>
+    </ion-row>
+    <div class="canvas-wrapper">
+        <canvas #imageCanvas 
+            (mousedown)="startDrawing($event)" (touchstart)="startDrawingTouch($event)" 
+            (mousemove)="moved($event)"        (touchmove)="touchMoved($event)" 
+            (mouseup)="endDrawing()"           (touchend)="endDrawing()">
+        </canvas>
+    </div>
 
-  <ion-buttons class="btn-group">
-      <ion-button (click)="exportCanvasImage()" expand="block" fill="solid" color="success">Finalizar</ion-button>
-      <ion-button (click)="clearCanvas()" expand="block" fill="solid" color="secondary">Limpiar</ion-button>
-      <ion-button routerLink="/mostrar-albaran" expand="block" fill="solid" color="danger">Atrás</ion-button>
-  </ion-buttons>
+    <!-- <ion-buttons class="btn-group">
+        <ion-button (click)="exportCanvasImage()" expand="block" fill="solid" color="success">Finalizar</ion-button>
+        <ion-button (click)="clearCanvas()" expand="block" fill="solid" color="secondary">Borrar</ion-button>
+        <ion-button routerLink="/mostrar-albaran" expand="block" fill="solid" color="danger">Atrás</ion-button>
+    </ion-buttons> -->
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <div class="btn-center">
+                    <ion-button color="primary" type="button" [routerLink]="['/mostrar-albaran']" [queryParams]="{idAlbaran: idAlbaran['idAlbaran']}" expand="block" fill="solid">
+                    Volver
+                    </ion-button>
+                </div>
+            </ion-col>
+            <ion-col>
+                <div class="btn-center">
+                    <ion-button (click)="clearCanvas()" color="dark" type="button" expand="block" fill="solid">
+                    Borrar
+                    </ion-button>
+                </div>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <div class="btn-center">
+                    <ion-button color="danger" type="button" (click)="exportCanvasImage()" expand="block" fill="solid">
+                    Finalizar
+                    </ion-button>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>
 
 <app-footer></app-footer>

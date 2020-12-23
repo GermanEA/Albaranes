@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
-import { GlobalDataService } from '../../services/global-data.service';
 
 @Component({
   selector: 'app-header',
@@ -9,12 +8,7 @@ import { GlobalDataService } from '../../services/global-data.service';
 })
 export class HeaderComponent implements OnInit {
 
-  @Input() titulo: string;
-  @Input() idAlbaran: string;
-  cif: string = this.globalData.cif;
-  
-  constructor(private menu: MenuController,
-              private globalData: GlobalDataService) { }
+  constructor(private menu: MenuController) { }
 
   ngOnInit() {
   }

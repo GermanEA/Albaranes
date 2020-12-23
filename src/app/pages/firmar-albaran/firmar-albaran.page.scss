@@ -1,3 +1,28 @@
-canvas {
-    border: 1px solid #e1e1e1;
+.content-canvas {
+    border-bottom: 1px solid #E1E1E1;
+
+    &::part(background) {
+        background-color: #e6e6e6;
+    }
+
+    .tb-header {
+        background-color: white;
+        padding: 0 20px;
+        margin-bottom: 15px;
+        -webkit-box-shadow: 0px 5px 5px 0px rgba(50, 50, 50, 0.25);
+        -moz-box-shadow: 0px 5px 5px 0px rgba(50, 50, 50, 0.25);
+        box-shadow: 0px 5px 5px 0px rgba(50, 50, 50, 0.25);
+
+        ion-col {
+            font-size: 11px;
+        }
+    }
+
+    .canvas-wrapper {
+        background-color: white;
+        margin: 15px;
+        -webkit-box-shadow: 0px 5px 5px 0px rgba(50, 50, 50, 0.25);
+        -moz-box-shadow: 0px 5px 5px 0px rgba(50, 50, 50, 0.25);
+        box-shadow: 0px 5px 5px 0px rgba(50, 50, 50, 0.25);
+    }
 }

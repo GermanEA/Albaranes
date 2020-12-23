@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { NavController, Platform } from '@ionic/angular';
+import { NavController, Platform, MenuController } from '@ionic/angular';
 import { AuthenticationService } from '../../services/authentication.service';
 import { ToastService } from '../../services/toast.service';
 import { GlobalDataService } from '../../services/global-data.service';
@@ -22,9 +22,12 @@ export class LoginPage implements OnInit {
               private toast: ToastService,
               private globalData: GlobalDataService,
               private localData: LocalDataService,
-              private plt: Platform) {}
+              private plt: Platform,
+              private menu: MenuController) {}
 
   ngOnInit() {
+    this.menu.enable(false);
+
     this.validations_form = this.formBuilder.group({
       cif: new FormControl('', Validators.compose([
         Validators.required,
@@ -89,9 +92,7 @@ export class LoginPage implements OnInit {
       
       let todayDate:Date = new Date();
       let interval:any = Math.round(todayDate.getTime() - this.localData.checkTime.getTime())/60000;
-
-      console.log(todayDate);
-      console.log(this.localData.checkTime);
+      
       console.log(interval);
 
       //Cada 3 días se debe de loguear nuevamente obligatoriamente.

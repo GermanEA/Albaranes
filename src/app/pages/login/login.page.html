@@ -1,22 +1,22 @@
+<app-header titulo="DeMÁT"></app-header>
 <ion-content [fullscreen]="true">
 
-  <div class="container">
+  <div class="container-login">
     <ion-grid class="login">
   
-      <ion-row>
+      <!-- <ion-row>
         <ion-col>
-          <img src="../../../assets/img/logowebwhite.png" alt="Logo DEMAT">        
+          <img src="../../../assets/img/trucks-login.jpg" alt="Logo DEMAT">        
         </ion-col>
-      </ion-row>
+      </ion-row> -->
 
       <form class="form" [formGroup]="validations_form" (ngSubmit)="loginUser(validations_form.value)">
 
         <ion-row>
           <ion-col>
             <ion-item>
-              <ion-label position="floating">CIF: </ion-label>
-              <ion-icon name="accessibility-outline" size="large" slot="start"></ion-icon>
-              <ion-input type="text" formControlName="cif" placeholder="Introduce tu CIF" inputmode="text" required></ion-input>
+              <ion-label class="ion-text-center">USUARIO </ion-label>
+              <ion-input class="ion-text-center" type="text" formControlName="cif" placeholder="Introduce tu C.I.F." inputmode="text" required></ion-input>
             </ion-item>
             <div class="validation-errors">
               <ng-container *ngFor="let validation of validation_messages.cif">
@@ -32,9 +32,8 @@
         <ion-row>
           <ion-col>
             <ion-item>
-              <ion-label position="floating">Contraseña: </ion-label>
-              <ion-icon name="keypad-outline" size="large" slot="start"></ion-icon>
-              <ion-input type="password" formControlName="password" class="form-controll" placeholder="Introduce la contraseña" inputmode="text" required></ion-input>
+              <ion-label class="ion-text-center">CONTRASEÑA </ion-label>
+              <ion-input type="password" formControlName="password" class="form-controll ion-text-center" placeholder="Introduce la contraseña" inputmode="text" required></ion-input>
             </ion-item>
             <div class="validation-errors">
               <ng-container *ngFor="let validation of validation_messages.password">
@@ -65,3 +64,5 @@
     </ion-grid>
   </div>
 </ion-content>
+
+<!-- <app-footer></app-footer> -->

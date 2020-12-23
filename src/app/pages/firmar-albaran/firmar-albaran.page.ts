@@ -35,7 +35,7 @@ export class FirmarAlbaranPage implements AfterViewInit {
 
   ngAfterViewInit() {
     this.canvasElement = this.canvas.nativeElement;
-    this.canvasElement.width = this.plt.width() + '';
+    this.canvasElement.width = this.plt.width() - 30 + '';
     this.canvasElement.height = 200;
   }
 

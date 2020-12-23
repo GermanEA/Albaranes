@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { QueriesService } from '../../services/queries.service';
 import { ToastService } from '../../services/toast.service';
 import { GlobalDataService } from '../../services/global-data.service';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-lista-albaranes',
@@ -11,13 +12,16 @@ import { GlobalDataService } from '../../services/global-data.service';
 export class ListaAlbaranesPage implements OnInit {
 
   fecha: string = this.globalData.fecha;
-  datosAlbaran: any[];
+  fechaFormat: string = this.formatFecha(this.fecha);
+  datosAlbaran: any[] = [];
 
   constructor(private globalData: GlobalDataService,
               private listAlbaranes: QueriesService,
-              private toast: ToastService) {}
+              private toast: ToastService,
+              private menu: MenuController) {}
 
   ngOnInit() {
+    this.menu.enable(true, 'principal');
     this.getAlbaranes(this.fecha);
   }
 
@@ -25,6 +29,7 @@ export class ListaAlbaranesPage implements OnInit {
     this.listAlbaranes.recoverListAlbaranes(fecha).subscribe( resp => {
       console.log(resp);
       if (!resp['estado']) {
+        this.datosAlbaran = [];
         this.toast.warningToast('No existen albaranes para el día seleccionado.');
       } else {
         this.globalData.datosAlbaran = resp['datos'];
@@ -35,7 +40,17 @@ export class ListaAlbaranesPage implements OnInit {
     });
   }
 
-  getFecha(e) {    
-    this.getAlbaranes(e.detail.value.slice(0,10));
+  getFecha(e) {
+    this.fecha = e.detail.value.slice(0,10);
+    this.fechaFormat = this.formatFecha(this.fecha);
+    this.getAlbaranes(this.fecha);
+  }
+
+  formatFecha(fecha) {
+    let year = fecha.slice(0, 4);
+    let month = fecha.slice(5, 7);
+    let day = fecha.slice(8, 10);
+
+    return day + ' / ' + month + ' / ' + year;
   }
 }
